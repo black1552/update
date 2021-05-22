@@ -1,12 +1,12 @@
 package com.liuchang.update
 
 import android.app.Application
-import com.blankj.utilcode.util.LogUtils
+import android.util.Log
+import android.widget.Toast
 import com.xuexiang.xaop.XAOP
 import com.xuexiang.xupdate.XUpdate
 import com.xuexiang.xutil.app.AppUtils
 import com.xuexiang.xutil.common.StringUtils
-import com.xuexiang.xutil.tip.ToastUtils
 import com.zhy.http.okhttp.OkHttpUtils
 import okhttp3.OkHttpClient
 import java.util.concurrent.TimeUnit
@@ -26,12 +26,12 @@ object Updateinit {
         //设置动态申请权限切片 申请权限被拒绝的事件响应监听
         //设置动态申请权限切片 申请权限被拒绝的事件响应监听
         XAOP.setOnPermissionDeniedListener { permissionsDenied ->
-            ToastUtils.toast(
-                "权限申请被拒绝:" + StringUtils.listToString(
+            Toast.makeText(
+                context, "权限申请被拒绝:" + StringUtils.listToString(
                     permissionsDenied,
                     ","
-                )
-            )
+                ), Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
@@ -50,7 +50,7 @@ object Updateinit {
             .isGet(true).isAutoMode(false)
             .param("versionCode", AppUtils.getAppVersionCode())
             .param("appKey", AppUtils.getAppPackageName())
-            .setOnUpdateFailureListener { LogUtils.a(it.detailMsg) }
+            .setOnUpdateFailureListener { Log.d("TAG",it.detailMsg) }
             .supportSilentInstall(false)
             .setIUpdateHttpService(OKHttpUpdateHttpService())
             .init(context)
