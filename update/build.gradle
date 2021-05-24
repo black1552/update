@@ -52,8 +52,6 @@ dependencies {
     implementation 'com.github.xuexiangjys:XHttp2:2.0.1'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.okhttp3:okhttp:3.14.9'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.20'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 
     //网络请求
     api 'com.squareup.retrofit2:retrofit:2.4.0'
@@ -62,4 +60,5 @@ dependencies {
     api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     api 'io.reactivex.rxjava2:rxjava:2.2.20'
     api 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    api 'com.blankj:utilcodex:1.30.5'
 }
