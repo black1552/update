@@ -65,4 +65,6 @@ dependencies {
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.6'
     //图片加载
     api 'com.github.bumptech.glide:glide:4.11.0'
+    api 'androidx.legacy:legacy-support-v4:1.0.0'
+    api 'com.github.bingoogolapple:BGABanner-Android:3.0.1'
 }
