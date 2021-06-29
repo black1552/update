@@ -10,6 +10,7 @@ import com.zhy.http.okhttp.request.RequestCall
 import io.reactivex.annotations.NonNull
 import okhttp3.Call
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.Request
 import java.io.File
 import java.util.*
@@ -47,7 +48,7 @@ class OKHttpUpdateHttpService @JvmOverloads constructor(private val mIsPostJson:
             OkHttpUtils.postString()
                 .url(url)
                 .content(UpdateUtils.toJson(params))
-                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .mediaType("application/json; charset=utf-8".toMediaTypeOrNull())
                 .build()
         } else {
             OkHttpUtils.post()
