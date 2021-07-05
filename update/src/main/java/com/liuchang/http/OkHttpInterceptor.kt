@@ -14,6 +14,11 @@ import java.util.*
 class OkHttpInterceptor : Interceptor {
     private val TAG = "okHttp"
     private var cookie: String? = null
+    var info: String = "${DeviceUtils.getMacAddress()}_${DeviceUtils.getManufacturer()}_${DeviceUtils.getDeviceBrand()}"
+    fun setInfo(info: String): OkHttpInterceptor {
+        this.info = info
+        return this
+    }
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
