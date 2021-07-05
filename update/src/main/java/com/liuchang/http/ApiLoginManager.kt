@@ -6,8 +6,8 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiLoginManager {
-    lateinit var base: String
-    lateinit var baseUrl: String
+    private var base: String = ""
+    private var baseUrl: String = ""
 
     @Volatile
     private var mOkHttpClient: OkHttpClient? = null
@@ -28,7 +28,7 @@ object ApiLoginManager {
     fun <T> create(clazz: Class<T>?): T {
         val retrofit: Retrofit = Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl(baseUrl)
+            .baseUrl(this.baseUrl)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -36,8 +36,8 @@ object ApiLoginManager {
     }
 
     fun setInstance(baseUrl: String, base: String): ApiLoginManager {
-        ApiLoginManager.baseUrl = baseUrl
-        ApiLoginManager.base = base
+        this.baseUrl = baseUrl
+        this.base = base
         return this
     }
 }

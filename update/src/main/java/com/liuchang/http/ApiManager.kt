@@ -7,8 +7,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiManager {
 
-    lateinit var base: String
-    lateinit var baseUrl: String
+    private var base: String = ""
+    private var baseUrl: String = ""
 
     @Volatile
     private var mOkHttpClient: OkHttpClient? = null
@@ -37,8 +37,8 @@ object ApiManager {
     }
 
     fun setInstance(baseUrl: String, base: String): ApiManager {
-        ApiManager.baseUrl = baseUrl
-        ApiManager.base = base
+        this.baseUrl = baseUrl
+        this.base = base
         return this
     }
 }

@@ -41,7 +41,7 @@ class OkHttpLoginInterceptor : Interceptor  {
             info = "${info}-${SPStaticUtils.getString("login")}"
         }
         params["User-Agent"] = info
-        params["Host"] = ApiManager.base
+        params["Host"] = ApiLoginManager.base
         params["Connection"] = "keep-alive"
         params["Content-Type"] = "application/json;charset=UTF-8"
         params["X-Requested-With"] = "XMLHttpRequest"
