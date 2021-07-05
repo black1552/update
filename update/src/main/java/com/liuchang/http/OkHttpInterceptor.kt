@@ -2,8 +2,7 @@ package com.liuchang.http
 
 import android.annotation.SuppressLint
 import android.util.Log
-import com.xuexiang.xutil.system.DeviceUtils
-import okhttp3.Headers
+import com.blankj.utilcode.util.DeviceUtils
 import okhttp3.Headers.Companion.toHeaders
 import okhttp3.Interceptor
 import okhttp3.Request
@@ -11,10 +10,11 @@ import okhttp3.Response
 import java.io.IOException
 import java.util.*
 
+@SuppressLint("MissingPermission")
 class OkHttpInterceptor : Interceptor {
     private val TAG = "okHttp"
     private var cookie: String? = null
-    var info: String = "${DeviceUtils.getMacAddress()}_${DeviceUtils.getManufacturer()}_${DeviceUtils.getDeviceBrand()}"
+    var info: String = "${DeviceUtils.getMacAddress()}_${DeviceUtils.getManufacturer()}_${DeviceUtils.getModel()}"
     fun setInfo(info: String): OkHttpInterceptor {
         this.info = info
         return this
@@ -37,12 +37,9 @@ class OkHttpInterceptor : Interceptor {
             .build()
     }
 
-    @SuppressLint("MissingPermission")
     private fun AddHeader(request: Request): Request {
         val params = HashMap<String, String>()
-        val info =
-            "${DeviceUtils.getMacAddress()}_${DeviceUtils.getManufacturer()}_${DeviceUtils.getDeviceBrand()}"
-        params["User-Agent"] = "Android $info"
+        params["User-Agent"] = info
         params["Host"] = ApiManager.base
         params["Connection"] = "keep-alive"
         params["Content-Type"] = "application/json;charset=UTF-8"
