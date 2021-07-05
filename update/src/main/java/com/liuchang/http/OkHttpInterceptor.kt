@@ -15,10 +15,6 @@ class OkHttpInterceptor : Interceptor {
     private val TAG = "okHttp"
     private var cookie: String? = null
     var info: String = "${DeviceUtils.getMacAddress()}_${DeviceUtils.getManufacturer()}_${DeviceUtils.getModel()}"
-    fun setInfo(info: String): OkHttpInterceptor {
-        this.info = info
-        return this
-    }
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -39,6 +35,9 @@ class OkHttpInterceptor : Interceptor {
 
     private fun AddHeader(request: Request): Request {
         val params = HashMap<String, String>()
+        if (ApiManager.info != null){
+            info = ApiManager.info!!
+        }
         params["User-Agent"] = info
         params["Host"] = ApiManager.base
         params["Connection"] = "keep-alive"

@@ -9,6 +9,7 @@ object ApiManager {
 
     lateinit var base: String
     lateinit var baseUrl: String
+    var info: String? = null
 
     @Volatile
     private var mOkHttpClient: OkHttpClient? = null
@@ -36,9 +37,12 @@ object ApiManager {
         return retrofit.create(clazz)
     }
 
-    fun setInstance(baseUrl: String, base: String): ApiManager {
+    fun setInstance(baseUrl: String, base: String, info: String?): ApiManager {
         this.baseUrl = baseUrl
         this.base = base
+        if (info != null) {
+            this.info = info
+        }
         return this
     }
 }
