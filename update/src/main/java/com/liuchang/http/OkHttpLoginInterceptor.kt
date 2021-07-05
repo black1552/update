@@ -2,6 +2,7 @@ package com.liuchang.http
 
 import android.annotation.SuppressLint
 import android.util.Log
+import com.blankj.utilcode.util.SPStaticUtils
 import com.xuexiang.xutil.system.DeviceUtils
 import okhttp3.Headers
 import okhttp3.Headers.Companion.toHeaders
@@ -35,9 +36,11 @@ class OkHttpLoginInterceptor : Interceptor  {
     @SuppressLint("MissingPermission")
     private fun AddHeader(request: Request): Request {
         val params = HashMap<String, String>()
-        val info =
-            "${DeviceUtils.getMacAddress()}_${DeviceUtils.getManufacturer()}_${DeviceUtils.getDeviceBrand()}"
-        params["User-Agent"] = "Android $info"
+        var info = DeviceUtils.getMacAddress()
+        if (SPStaticUtils.contains("login")){
+            info = "${info}-${SPStaticUtils.getString("login")}"
+        }
+        params["User-Agent"] = info
         params["Host"] = ApiManager.base
         params["Connection"] = "keep-alive"
         params["Content-Type"] = "application/json;charset=UTF-8"
