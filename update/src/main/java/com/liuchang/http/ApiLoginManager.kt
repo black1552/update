@@ -14,7 +14,7 @@ object ApiLoginManager {
     private val okHttpClient: OkHttpClient?
         private get() {
             if (mOkHttpClient == null) {
-                synchronized(ApiManager::class.java) {
+                synchronized(ApiLoginManager::class.java) {
                     if (mOkHttpClient == null) {
                         mOkHttpClient = OkHttpClient.Builder()
                             .addInterceptor(OkHttpLoginInterceptor())
