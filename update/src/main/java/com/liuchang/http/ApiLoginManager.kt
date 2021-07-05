@@ -36,8 +36,8 @@ object ApiLoginManager {
     }
 
     fun setInstance(baseUrl: String, base: String): ApiLoginManager {
-        ApiManager.baseUrl = baseUrl
-        ApiManager.base = base
+        ApiLoginManager.baseUrl = baseUrl
+        ApiLoginManager.base = base
         return this
     }
 }
