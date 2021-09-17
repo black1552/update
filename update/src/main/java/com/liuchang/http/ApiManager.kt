@@ -7,6 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.time.Duration
+import java.util.concurrent.TimeUnit
 
 object ApiManager {
 
@@ -24,7 +25,9 @@ object ApiManager {
                         mOkHttpClient = OkHttpClient.Builder()
                             .addInterceptor(OkHttpInterceptor())
                             .retryOnConnectionFailure(true)
-                            .readTimeout(Duration.ofSeconds(300L))
+                            .readTimeout(8, TimeUnit.SECONDS)
+                            .writeTimeout(8, TimeUnit.SECONDS)
+                            .connectTimeout(5, TimeUnit.SECONDS)
                             .build()
                     }
                 }
