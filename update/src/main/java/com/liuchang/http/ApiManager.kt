@@ -1,9 +1,12 @@
 package com.liuchang.http
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.time.Duration
 
 object ApiManager {
 
@@ -14,12 +17,14 @@ object ApiManager {
     @Volatile
     private var mOkHttpClient: OkHttpClient? = null
     private val okHttpClient: OkHttpClient?
-        private get() {
+        @RequiresApi(Build.VERSION_CODES.O) private get() {
             if (mOkHttpClient == null) {
                 synchronized(ApiManager::class.java) {
                     if (mOkHttpClient == null) {
                         mOkHttpClient = OkHttpClient.Builder()
                             .addInterceptor(OkHttpInterceptor())
+                            .retryOnConnectionFailure(true)
+                            .readTimeout(Duration.ofSeconds(300L))
                             .build()
                     }
                 }
