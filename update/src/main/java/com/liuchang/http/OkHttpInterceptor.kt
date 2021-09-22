@@ -45,6 +45,7 @@ class OkHttpInterceptor : Interceptor {
         params["Content-Type"] = "application/json;charset=UTF-8"
         params["X-Requested-With"] = "XMLHttpRequest"
         params["Accept-Language"] = "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"
+        params["Content-length"] = request.body?.contentLength().toString()
         if (cookie != "" && cookie != null) {
             params["CooKie"] = cookie!!
         }
