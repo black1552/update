@@ -25,7 +25,9 @@ class OkHttpInterceptor : Interceptor {
         val response = chain.proceed(request)
         // 打印response日志
         logForResponse(response)
-        cookie = response.header("Set-Cookie")
+        if (response.header("Set-Cookie",null) != null){
+            cookie = response.header("Set-Cookie")
+        }
         val cacheControl = request.cacheControl.toString()
         return response.newBuilder()
             .header("Cache-Control", cacheControl)
