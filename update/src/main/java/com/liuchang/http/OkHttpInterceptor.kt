@@ -21,10 +21,10 @@ class OkHttpInterceptor : Interceptor {
         var request = chain.request()
         request = AddHeader(request)
         // 打印request日志
-        logForRequest(request)
+//         logForRequest(request)
         val response = chain.proceed(request)
         // 打印response日志
-        logForResponse(response)
+//         logForResponse(response)
         if (response.header("Set-Cookie",null) != null){
             cookie = response.header("Set-Cookie")
         }

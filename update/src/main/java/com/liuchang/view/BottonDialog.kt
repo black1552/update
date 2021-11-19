@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
-import com.zhengruan.ks_staff.R
+import com.liuchang.update.R
 
 class BottonDialog(content: Context) {
     lateinit var builder: AlertDialog.Builder
