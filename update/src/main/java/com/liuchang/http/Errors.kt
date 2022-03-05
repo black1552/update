@@ -5,7 +5,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import retrofit2.HttpException
 
-class Errors {
+object Errors {
     fun Create(throwable: Throwable) {
         if (throwable is HttpException) {
             val en = throwable.response().errorBody()?.string()

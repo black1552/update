@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.blankj.utilcode.util.BarUtils
 import com.liuchang.http.ApiManager
+import com.liuchang.http.Errors
 
 /**
  * 添加所有其他大神编写所需要用到的引用库
