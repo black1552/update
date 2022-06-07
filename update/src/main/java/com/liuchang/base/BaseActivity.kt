@@ -25,7 +25,7 @@ abstract class BaseActivity: FragmentActivity() {
 
     abstract fun initDate()
 
-    private fun saveFile(content: String, pathName: String?) {
+    fun saveFile(content: String, pathName: String?) {
         var thisPath = ""
         pathName?.let {
             thisPath = "${path}/${it}"
@@ -34,7 +34,7 @@ abstract class BaseActivity: FragmentActivity() {
         FileIOUtils.writeFileFromString(thisPath, content)
     }
 
-    private fun getFileContext(pathName: String): List<String>? {
+    fun getFileContext(pathName: String): List<String>? {
         val thisPath = "${path}/${pathName}"
         return if (FileUtils.isFileExists(thisPath)) {
             val context = FileIOUtils.readFile2List(thisPath)
