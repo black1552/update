@@ -1,5 +1,6 @@
 package com.liuchang.http
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import com.blankj.utilcode.util.ActivityUtils
@@ -26,16 +27,15 @@ object Errors {
         }
     }
 
-    fun CreateDialog(throwable: Throwable, context: Context) {
+    fun CreateDialog(throwable: Throwable, context: Context, clz: Class<out Activity>) {
         if (throwable is HttpException) {
             val en = throwable.response().errorBody()?.string()
             if (!en.equals("Not Found")) {
                 val entity = GsonUtils.fromJson(en, BaseEntity::class.java)
-                DialogUtils.showShort
                 AlertDialog.Builder(context).setTitle("提示")
                     .setMessage(entity.msg).setNegativeButton("确定") { _, _ ->
                         ActivityUtils.getTopActivity()
-                        ActivityUtils.finishActivity(context)
+                        ActivityUtils.finishActivity(clz)
                     }.show()
                 LogUtils.a(entity.msg)
                 ToastUtils.showShort(entity.msg)
