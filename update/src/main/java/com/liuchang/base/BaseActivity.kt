@@ -13,8 +13,6 @@ import com.blankj.utilcode.util.FileUtils
 
 abstract class BaseActivity: FragmentActivity() {
 
-    private val path = "/storage/emulated/0/Download/${AppUtils.getAppPackageName()}"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initView()
@@ -22,19 +20,15 @@ abstract class BaseActivity: FragmentActivity() {
 
     abstract fun initView()
 
-    fun saveFile(content: String, pathName: String?) {
-        var thisPath = ""
-        pathName?.let {
-            thisPath = "${path}/${it}"
-        }
-        FileUtils.createFileByDeleteOldFile(thisPath)
-        FileIOUtils.writeFileFromString(thisPath, content)
+    fun saveFile(content: String, pathName: String) {
+        FileUtils.createFileByDeleteOldFile(pathName)
+        FileIOUtils.writeFileFromString(pathName, content)
     }
 
     fun getFileContext(pathName: String): List<String>? {
         val thisPath = "${path}/${pathName}"
-        return if (FileUtils.isFileExists(thisPath)) {
-            val context = FileIOUtils.readFile2List(thisPath)
+        return if (FileUtils.isFileExists(pathName)) {
+            val context = FileIOUtils.readFile2List(pathName)
             if (!context.isNullOrEmpty()) {
                 context
             } else {
