@@ -18,12 +18,9 @@ abstract class BaseActivity: FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initView()
-        initDate()
     }
 
     abstract fun initView()
-
-    abstract fun initDate()
 
     fun saveFile(content: String, pathName: String?) {
         var thisPath = ""
