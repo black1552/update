@@ -26,7 +26,6 @@ abstract class BaseActivity: FragmentActivity() {
     }
 
     fun getFileContext(pathName: String): List<String>? {
-        val thisPath = "${path}/${pathName}"
         return if (FileUtils.isFileExists(pathName)) {
             val context = FileIOUtils.readFile2List(pathName)
             if (!context.isNullOrEmpty()) {
