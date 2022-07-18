@@ -40,7 +40,7 @@ class OkHttpInterceptor : Interceptor {
         if (ApiManager.info != null){
             info = ApiManager.info!!
         }
-        params["User-Agent"] = info
+        params["Set-Auth"] = info
         params["Host"] = ApiManager.base
         params["Connection"] = "keep_alive"
         params["Content-Type"] = "application/json;charset=UTF-8"
@@ -48,7 +48,7 @@ class OkHttpInterceptor : Interceptor {
         params["Accept-Language"] = "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"
         params["Content-Length"] = request.body?.contentLength().toString()
         if (cookie != "" && cookie != null) {
-            params["Set-Auth"] = cookie!!
+            params["CooKie"] = cookie!!
         }
         val header = params.toHeaders()
         return request.newBuilder().headers(header).build()
