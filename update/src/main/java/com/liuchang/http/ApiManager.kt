@@ -11,9 +11,10 @@ import java.util.concurrent.TimeUnit
 
 object ApiManager {
 
-    lateinit var base: String
-    lateinit var baseUrl: String
+    private var base: String = ""
+    private var baseUrl: String = ""
     var info: String? = null
+
 
     @Volatile
     private var mOkHttpClient: OkHttpClient? = null

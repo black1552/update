@@ -33,9 +33,7 @@ abstract class BaseApplication : Application() {
         Updateinit.initUpdate()
         Updateinit.initOKHttpUtils()
         ViewDoubleHelper.init(this)
-        ApiManager.base = base
-        ApiManager.baseUrl = baseUrl
-        ApiManager.info = info
+        ApiManager.setInstance(baseUrl,base,info)
         iniDate()
     }
 
