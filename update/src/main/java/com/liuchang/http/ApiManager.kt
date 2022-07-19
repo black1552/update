@@ -11,8 +11,8 @@ import java.util.concurrent.TimeUnit
 
 object ApiManager {
 
-    private var base: String = ""
-    private var baseUrl: String = ""
+    var base: String = ""
+    var baseUrl: String = ""
     var info: String? = null
 
 
